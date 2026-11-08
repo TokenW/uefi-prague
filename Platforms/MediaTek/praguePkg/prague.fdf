@@ -1,0 +1,53 @@
+## @file
+#  prague.fdf
+#
+#  Prague (Redmi K90 Max) UEFI firmware volume description
+#
+##
+
+[Defines]
+  FLASH_DEFINITION = Platforms/MediaTek/praguePkg/prague.fdf
+  FIXED_BLOCK_SIZE  = 0x10000
+  FLASH_SIZE        = 0x800000
+
+[FD.SILICIUM_UEFI]
+  BaseAddress   = 0x44000000
+  Size          = 0x00800000
+  ErasePolarity = 1
+  BlockSize     = 0x10000
+  NumBlocks     = 128
+
+  FV = FV_MAIN
+
+[FV.FV_MAIN]
+  FvAlignment        = 8
+  ERASE_POLARITY     = 1
+  MEMORY BaseAddress = 0x44000000
+  BLOCK_SIZE         = 0x10000
+  NUM_BLOCKS         = 128
+  FV_NAME            = SILICIUM_UEFI
+  FIXED_NAME         = L'SiliciUeF'
+
+  #
+  #  UniXNU required modules
+  #
+  INF UniXNUPkg/Application/UniXNU/UniXNU.inf
+  INF UniXNUPkg/Driver/UniXNUDxe/UniXNUDxe.inf
+  INF UniXNUPkg/Driver/UniXNURamDiskDxe/UniXNURamDiskDxe.inf
+  INF DarwinBootPkg/Driver/DarwinBoot.inf
+
+  #
+  #  Filesystem support
+  #
+  INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
+  INF FatPkg/EnhancedFatDxe/Fat.inf
+
+  #
+  #  Platform drivers (TODO)
+  #
+  # INF MT6993Pkg/Driver/GicDxe/GicDxe.inf
+  # INF MT6993Pkg/Driver/SerialPortDxe/SerialPortDxe.inf
+  # INF MT6993Pkg/Driver/DisplayDxe/DisplayDxe.inf
+
+[Rule.common]
+  FW_FILE = TRUE

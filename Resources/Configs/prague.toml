@@ -1,0 +1,35 @@
+# Prague (Redmi K90 Max) UEFI firmware configuration
+# SoC: MediaTek Dimensity 9500 (MT6993)
+# Device: Redmi K90 Max (prague)
+
+[boot_shim]
+requires_kernel_header = true
+
+[uefi_fd]
+# Firmware volume load address and size
+# TODO: confirm actual base address from dali reference
+base = 0x44000000
+size = 0x00800000  # 8 MB firmware volume
+
+[boot_image_kernel]
+kernel_compression = "gzip"
+append_dtb = true
+
+[boot_image]
+# GKI boot image header v4
+header_version = 4
+base = 0x80000000
+kernel_offset = 0x00008000
+tags_offset = 0x01e00000
+pagesize = 4096
+
+[firmware]
+# Submodules and patches
+submodules = [
+  "Common/Mu",
+  "Silicon/Silicium",
+]
+patches = []
+
+# Output firmware volume path
+fd = "Build/praguePkg/DEBUG_CLANGPDB/FV/SILICIUM_UEFI.fd"

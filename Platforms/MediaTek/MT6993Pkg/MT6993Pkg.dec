@@ -1,0 +1,48 @@
+## @file
+#  MT6993Pkg.dec
+#
+#  MediaTek MT6993 (Dimensity 9500) SoC package
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION = 0x00010005
+  PACKAGE_NAME      = MT6993Pkg
+  PACKAGE_GUID      = 12345678-2345-3456-4567-567890123456
+  PACKAGE_VERSION   = 0.1
+
+[Includes]
+  Include/
+
+[LibraryClasses]
+  #
+  #  SoC-specific library classes
+  #
+  # GicLib|MT6993Pkg/Library/GicLib/GicLib.inf
+  # SerialPortLib|MT6993Pkg/Library/SerialPortLib/SerialPortLib.inf
+  # ClockLib|MT6993Pkg/Library/ClockLib/ClockLib.inf
+  # PowerLib|MT6993Pkg/Library/PowerLib/PowerLib.inf
+
+[Protocols]
+  #
+  #  SoC-specific protocols
+  #
+  # gMT6993GicProtocolGuid
+  # gMT6993ClockProtocolGuid
+
+[Pcds]
+  #
+  #  GICv3
+  #
+  gMT6993PkgTokenSpaceGuid.PcdGicDistributorBase   |0x06800000|
+  gMT6993PkgTokenSpaceGuid.PcdGicRedistributorsBase |0x06880000|
+
+  #
+  #  UFS
+  #
+  gMT6993PkgTokenSpaceGuid.PcdUfsControllerBase     |0x16810000|
+
+  #
+  #  Display (DSI0)
+  #
+  gMT6993PkgTokenSpaceGuid.PcdDsi0Base             |0x3e730000|
